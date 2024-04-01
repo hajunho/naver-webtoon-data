@@ -25,8 +25,9 @@ class Waifu2x(nn.Sequential):
         super(Waifu2x, self).__init__(*layers)
 
         # weights ported from https://github.com/nagadomi/waifu2x
-        ckpt_url = "https://onedrive.live.com/download?cid=467C8AA2DE5C1D02&resid=467C8AA2DE5C1D02%21155&authkey=AFLQwtj_9nVIYy8"
-        ckpt = torch.hub.load_state_dict_from_url(ckpt_url, file_name="upconv7_noise2_scale2.0x.pt", progress=False)
+        #ckpt_url = "https://onedrive.live.com/download?cid=467C8AA2DE5C1D02&resid=467C8AA2DE5C1D02%21155&authkey=AFLQwtj_9nVIYy8"
+        ckpt_path = "upconv7_noise2_scale2.0x.pt"
+        ckpt = torch.load(ckpt_path)
         self.load_state_dict(ckpt)
         
     def forward(self, img: Union[torch.Tensor, Image.Image]):
